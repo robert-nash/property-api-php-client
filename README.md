@@ -11,14 +11,14 @@ composer install
 ## Testing
 
 #### Automatic
-Paste your API Access Token into the root `.env` file. See `.env.sample`.
+Paste your API Access Token into the root `.env` file. See `.env.example`.
 
 ```bash
 ./vendor/bin/phpunit tests/
 ```
 
 #### Manual
-Paste your API Access Token into the root `.env` file. See `.env.sample`.
+Paste your API Access Token into the root `.env` file. See `.env.example`.
 
 ```php
 php example/simple.php
@@ -36,11 +36,11 @@ php example/complex.php
 
     use PropertyAPI\Properties;
 
-    $properties = new Properties({
+    $client = new Properties({
         'accessToken' => '~~INSERT_ACCESS_TOKEN~~',
     });
 
-    $collection = $properties->getProperties();
+    $collection = $client->getProperties();
 
     var_dump($collection->getTotal());
 
@@ -56,22 +56,18 @@ php example/complex.php
 
 ```php
 <?php
-    try {
+    require 'vendor/autoload.php';
 
-        $client = new Client([
-            'accessToken' => file_get_contents(__DIR__ . '/.token'),
-        ]);
+    use PropertyAPI\Properties;
 
-        $property = $client->getProperty(123456);
+    $client = new Properties({
+        'accessToken' => '~~INSERT_ACCESS_TOKEN~~',
+    });
 
-        var_dump($property->isValid());
+    $property = $client->getProperty(123456);
 
-        var_dump($property->getCompanyID());
+    var_dump($property->isValid());
 
-    } catch (Exception $event) {
-
-        var_dump($event->getMessage());
-
-    }
+    var_dump($property->getCompanyID());
 ?>
 ```
