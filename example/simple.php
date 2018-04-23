@@ -20,7 +20,7 @@
 
         var_dump('Total: ' . $properties->getTotal());
 
-        var_dump($properties->getRows());
+        #var_dump($properties->getRows());
 
         foreach($properties->getParsedRows() as $property) {
             var_dump($property->getCompanyID());
@@ -43,6 +43,8 @@
         ]);
 
         $property = $client->getProperty(getenv('PROPERTY_ID'));
+
+        var_dump($property);
 
         var_dump($property->isValid());
 

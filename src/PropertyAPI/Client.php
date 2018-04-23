@@ -15,9 +15,9 @@ class Client extends \PropertyAPI\Base
     private $parsedRows = [];
     private $parsedRow;
 
-    public function getProperties()
+    public function getProperties($params = null)
     {
-        $this->response = $this->request('');
+        $this->response = $this->request('', $params);
 
         $this->total = $this->response->Total;
         $this->rows = ($this->response->Data ?: []);
@@ -31,14 +31,14 @@ class Client extends \PropertyAPI\Base
     {
         $this->response = $this->request(sprintf('id/%d', $id));
 
-        return ($this->response->Data ? $this->parseRow($this->response->Data[0]) : []);
+        return ($this->response->Data ? $this->parseRow($this->response->Data[0]->_source) : []);
     }
 
     private function parseRows()
     {
         if ($this->total) {
             foreach ($this->rows as $key => $row) {
-                $this->parsedRows[$key] = $this->parseRow($row);
+                $this->parsedRows[$key] = $this->parseRow($row->_source);
             }
         }
     }

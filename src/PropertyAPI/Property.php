@@ -9,6 +9,7 @@ use Carbon\Carbon;
  */
 class Property extends \PropertyAPI\Base
 {
+    protected $mediaURI = 'https://passport.eurolink.co/api/properties/v1/media/';
     private $data;
 
     public function __construct($data)
@@ -28,17 +29,32 @@ class Property extends \PropertyAPI\Base
         return isset($this->Property->PropertyID) && ! empty($this->Property->PropertyID);
     }
 
-    public function getCompanyID()
+    public function getCompanyId()
     {
         return $this->CompanyID;
     }
 
-    public function getPropertyID()
+    public function getPropertyId()
     {
         return $this->Property->PropertyID;
     }
 
-    public function getID()
+    public function getWebStatus()
+    {
+        return $this->Property->WebStatus;
+    }
+
+    public function getStatus()
+    {
+        return $this->getWebStatus();
+    }
+
+    public function statusOf($status)
+    {
+        return ($this->getWebStatus() === $status);
+    }
+
+    public function getId()
     {
         return (Integer) $this->WebID;
     }
@@ -50,7 +66,7 @@ class Property extends \PropertyAPI\Base
         for ($i = 1; $i <= 2; $i++) {
             if ($this->Brochures->{'Document' . $i}) {
                 $brochures[] = [
-                    'url' => $this->Brochures->{'Document' . $i},
+                    'url' => $this->mediaURI . $this->Brochures->{'Document' . $i},
                     'description' => $this->Brochures->{'Description' . $i},
                 ];
             }
@@ -97,7 +113,12 @@ class Property extends \PropertyAPI\Base
 
     public function getShortAddress()
     {
-        return trim($this->ShortAddress);
+        return trim($this->Property->ShortAddress);
+    }
+
+    public function getTitle()
+    {
+        return $this->getShortAddress();
     }
 
     public function getEPCImages()
@@ -106,7 +127,7 @@ class Property extends \PropertyAPI\Base
 
         for ($i = 1; $i <= 2; $i++) {
             if ($this->EPCs->{'Image' . $i}) {
-                $epcs[] = $this->EPCs->{'Image' . $i};
+                $epcs[] = $this->mediaURI . $this->EPCs->{'Image' . $i};
             }
         }
 
@@ -119,7 +140,7 @@ class Property extends \PropertyAPI\Base
 
         for ($i = 1; $i <= 2; $i++) {
             if ($this->EPCs->{'Document' . $i}) {
-                $epcs[] = $this->EPCs->{'Document' . $i};
+                $epcs[] = $this->mediaURI . $this->EPCs->{'Document' . $i};
             }
         }
 
@@ -152,7 +173,7 @@ class Property extends \PropertyAPI\Base
 
         for ($i = 1; $i <= 5; $i++) {
             if ($this->FloorPlans->{'Plan' . $i}) {
-                $floorPlans[] = $this->FloorPlans->{'Plan' . $i};
+                $floorPlans[] = $this->mediaURI . $this->FloorPlans->{'Plan' . $i};
             }
         }
 
@@ -162,6 +183,16 @@ class Property extends \PropertyAPI\Base
     public function getCategory()
     {
         return $this->Property->Category;
+    }
+
+    public function isLettings()
+    {
+        return ($this->getCategory() === 'Lettings');
+    }
+
+    public function isSales()
+    {
+        return ($this->getCategory() === 'Sales');
     }
 
     public function getDescription()
@@ -177,6 +208,11 @@ class Property extends \PropertyAPI\Base
     public function isFeatured()
     {
         return ($this->Property->Featured ? true : false);
+    }
+
+    public function isFeaturedDate()
+    {
+        return ($this->Property->FeaturedDate ? true : false);
     }
 
     private function parseFeaturedDate()
@@ -204,9 +240,14 @@ class Property extends \PropertyAPI\Base
         return $this->Property->Amount;
     }
 
+    public function getPrice()
+    {
+        return $this->getAmount();
+    }
+
     public function getAvailableFromDate()
     {
-        return $this->parseDate($this->Property->AvailableFrom);
+        return $this->parseDate($this->Property->AvailableFromDate);
     }
 
     public function getTown()
@@ -229,9 +270,24 @@ class Property extends \PropertyAPI\Base
         return $this->Property->RentPeriod;
     }
 
+    public function getPriceQualifier()
+    {
+        return $this->Property->PriceStatus;
+    }
+
     public function getPropertyType()
     {
         return $this->Property->PropertyType;
+    }
+
+    public function getClassification()
+    {
+        return $this->getPropertyType();
+    }
+
+    public function isCommerical()
+    {
+        return ($this->Property->PropertyType === 'Commercial Property');
     }
 
     public function getOutsideSpace()
@@ -305,7 +361,7 @@ class Property extends \PropertyAPI\Base
 
         for ($i = 1; $i <= 2; $i++) {
             if ($this->URLs->{'URL' . $i}) {
-                $urls[] = $this->URLs->{'URL' . $i};
+                $urls[] = $this->mediaURI . $this->URLs->{'URL' . $i};
             }
         }
 
@@ -349,13 +405,20 @@ class Property extends \PropertyAPI\Base
         for ($i = 1; $i <= 25; $i++) {
             if ($this->Photos->{'Photo' . $i}) {
                 $photos[] = [
-                    'url' => $this->Photos->{'Photo' . $i},
+                    'url' => $this->mediaURI . $this->Photos->{'Photo' . $i},
                     'description' => $this->Photos->{'Description' . $i},
                 ];
             }
         }
 
         return $photos;
+    }
+
+    public function getPhotoUrl()
+    {
+        $photos = $this->getPhotos();
+
+        return (isset($photos[0]) ? $photos[0]['url'] : null);
     }
 
     public function getPostcode()
@@ -385,7 +448,7 @@ class Property extends \PropertyAPI\Base
         for ($i = 1; $i <= 4; $i++) {
             if ($this->Videos->{'Video' . $i}) {
                 $videos[] = [
-                    'url' => $this->Videos->{'Video' . $i},
+                    'url' => $this->mediaURI . $this->Videos->{'Video' . $i},
                     'description' => $this->Videos->{'Description' . $i},
                 ];
             }
@@ -396,7 +459,7 @@ class Property extends \PropertyAPI\Base
 
     public function __get($name)
     {
-        return $this->data->{$name};
+        return (isset($this->data->{$name}) ? $this->data->{$name} : null);
     }
 
 }
