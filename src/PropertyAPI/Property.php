@@ -39,9 +39,14 @@ class Property extends \PropertyAPI\Base
         return $this->Property->PropertyID;
     }
 
+    public function getId()
+    {
+        return (Integer) $this->WebID;
+    }
+
     public function getWebStatus()
     {
-        return $this->Property->WebStatus;
+        return $this->Property->Status;
     }
 
     public function getStatus()
@@ -52,11 +57,6 @@ class Property extends \PropertyAPI\Base
     public function statusOf($status)
     {
         return ($this->getWebStatus() === $status);
-    }
-
-    public function getId()
-    {
-        return (Integer) $this->WebID;
     }
 
     public function getBrochures()
@@ -328,6 +328,11 @@ class Property extends \PropertyAPI\Base
     public function getMarketingDescription()
     {
         return $this->Property->MarketingDescription;
+    }
+
+    public function getMarketingDescriptionHTML()
+    {
+        return $this->Property->MarketingDescriptionHTML;
     }
 
     public function getNewProperty()

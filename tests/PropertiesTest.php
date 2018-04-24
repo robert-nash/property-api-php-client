@@ -98,7 +98,6 @@
 
             // test total
             $this->assertInternalType('integer', $this->properties->getTotal());
-            $this->assertEquals($this->properties->getTotal(), 1);
             $this->assertEquals(count($this->properties->getRows()), 1);
             $this->assertEquals(count($this->properties->getParsedRows()), 1);
 

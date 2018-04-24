@@ -29,6 +29,9 @@
             echo PHP_EOL . 'getID()' . PHP_EOL;
             var_dump($property->getID());
 
+            echo PHP_EOL . 'getWebStatus()' . PHP_EOL;
+            var_dump($property->getWebStatus());
+
             echo PHP_EOL . 'getBrochures()' . PHP_EOL;
             var_dump($property->getBrochures());
 
@@ -67,6 +70,12 @@
 
             echo PHP_EOL . 'getCategory()' . PHP_EOL;
             var_dump($property->getCategory());
+
+            echo PHP_EOL . 'isLettings()' . PHP_EOL;
+            var_dump($property->isLettings());
+
+            echo PHP_EOL . 'isSales()' . PHP_EOL;
+            var_dump($property->isSales());
 
             echo PHP_EOL . 'getDescription()' . PHP_EOL;
             var_dump($property->getDescription());
@@ -107,6 +116,12 @@
             echo PHP_EOL . 'getPropertyType()' . PHP_EOL;
             var_dump($property->getPropertyType());
 
+            echo PHP_EOL . 'getClassification()' . PHP_EOL;
+            var_dump($property->getClassification());
+
+            echo PHP_EOL . 'isCommerical()' . PHP_EOL;
+            var_dump($property->isCommerical());
+
             echo PHP_EOL . 'getOutsideSpace()' . PHP_EOL;
             var_dump($property->getOutsideSpace());
 
@@ -130,6 +145,9 @@
 
             echo PHP_EOL . 'getMarketingDescription()' . PHP_EOL;
             var_dump($property->getMarketingDescription());
+
+            echo PHP_EOL . 'getMarketingDescriptionHTML()' . PHP_EOL;
+            var_dump($property->getMarketingDescriptionHTML());
 
             echo PHP_EOL . 'getNewProperty()' . PHP_EOL;
             var_dump($property->getNewProperty());

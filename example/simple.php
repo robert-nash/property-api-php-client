@@ -42,7 +42,9 @@
             'accessToken' => getenv('TOKEN'),
         ]);
 
-        $property = $client->getProperty(getenv('PROPERTY_ID'));
+        $propertyID = getenv('PROPERTY_ID');
+
+        $property = $client->getProperty($propertyID);
 
         var_dump($property);
 
