@@ -29,17 +29,17 @@ class Property extends \PropertyAPI\Base
         return isset($this->Property->PropertyID) && ! empty($this->Property->PropertyID);
     }
 
-    public function getCompanyId()
+    public function getCompanyID()
     {
         return $this->CompanyID;
     }
 
-    public function getPropertyId()
+    public function getPropertyID()
     {
         return $this->Property->PropertyID;
     }
 
-    public function getId()
+    public function getID()
     {
         return (Integer) $this->WebID;
     }
@@ -152,7 +152,7 @@ class Property extends \PropertyAPI\Base
         return $this->Fees->Description;
     }
 
-    public function getFeesLink()
+    public function getFeesURL()
     {
         return $this->Fees->Link;
     }
@@ -398,7 +398,7 @@ class Property extends \PropertyAPI\Base
         return $this->Office->Manager;
     }
 
-    public function getOfficeWebsite()
+    public function getOfficeURL()
     {
         return $this->Office->Website;
     }
@@ -446,7 +446,7 @@ class Property extends \PropertyAPI\Base
         return $this->Location->Latitude;
     }
 
-    public function getVideos()
+    public function getVideoURLs()
     {
         $videos = [];
 

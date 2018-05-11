@@ -58,6 +58,6 @@
             $this->assertInternalType('array', $this->property->getURLs());
             $this->assertInternalType('array', $this->property->getPhotos());
             $this->assertInternalType('object', $this->property->getLocation());
-            $this->assertInternalType('array', $this->property->getVideos());
+            $this->assertInternalType('array', $this->property->getVideoURLs());
         }
     }

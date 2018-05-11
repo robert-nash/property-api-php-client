@@ -5,25 +5,7 @@ A PHP client for Eurolink's Property API.
 ## Setup
 
 ```
-composer install
-```
-
-## Testing
-
-#### Automatic
-Paste your API Access Token into the root `.env` file. See `.env.example`.
-
-```bash
-./vendor/bin/phpunit tests/
-```
-
-#### Manual
-Paste your API Access Token into the root `.env` file. See `.env.example`.
-
-```php
-php example/simple.php
-// or
-php example/complex.php
+composer require eurolink/property-api-php-client
 ```
 
 ## Usage
@@ -70,4 +52,22 @@ php example/complex.php
 
     var_dump($property->getCompanyID());
 ?>
+```
+
+## Testing
+
+#### Automatic
+Paste your API Access Token into the root `.env` file. See `.env.example`.
+
+```bash
+./vendor/bin/phpunit tests/
+```
+
+#### Manual
+Paste your API Access Token into the root `.env` file. See `.env.example`.
+
+```php
+php example/simple.php
+// or
+php example/complex.php
 ```

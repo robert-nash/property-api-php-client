@@ -56,8 +56,8 @@
             echo PHP_EOL . 'getFeesDescription()' . PHP_EOL;
             var_dump($property->getFeesDescription());
 
-            echo PHP_EOL . 'getFeesLink()' . PHP_EOL;
-            var_dump($property->getFeesLink());
+            echo PHP_EOL . 'getFeesURL()' . PHP_EOL;
+            var_dump($property->getFeesURL());
 
             echo PHP_EOL . 'getTenure()' . PHP_EOL;
             var_dump($property->getTenure());
@@ -167,8 +167,8 @@
             echo PHP_EOL . 'getURLs()' . PHP_EOL;
             var_dump($property->getURLs());
 
-            echo PHP_EOL . 'getOffice()' . PHP_EOL;
-            var_dump($property->getOffice());
+            echo PHP_EOL . 'getOfficeID()' . PHP_EOL;
+            var_dump($property->getOfficeID());
 
             echo PHP_EOL . 'getOfficeName()' . PHP_EOL;
             var_dump($property->getOfficeName());
@@ -182,8 +182,8 @@
             echo PHP_EOL . 'getOfficeManager()' . PHP_EOL;
             var_dump($property->getOfficeManager());
 
-            echo PHP_EOL . 'getOfficeWebsite()' . PHP_EOL;
-            var_dump($property->getOfficeWebsite());
+            echo PHP_EOL . 'getOfficeURL()' . PHP_EOL;
+            var_dump($property->getOfficeURL());
 
             echo PHP_EOL . 'getPhotos()' . PHP_EOL;
             var_dump($property->getPhotos());
@@ -200,8 +200,8 @@
             echo PHP_EOL . 'getLatitude()' . PHP_EOL;
             var_dump($property->getLatitude());
 
-            echo PHP_EOL . 'getVideos()' . PHP_EOL;
-            var_dump($property->getVideos());
+            echo PHP_EOL . 'getVideoURLs()' . PHP_EOL;
+            var_dump($property->getVideoURLs());
         }
 
     } catch (Exception $event) {
