@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fa0ef19b87b70baf1e3e1590734f3a9",
+    "content-hash": "e9f0a3f0ab408fce037f9e6f8085dc51",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -1883,7 +1883,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "vlucas/phpdotenv": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
