@@ -47,6 +47,9 @@
             echo PHP_EOL . 'getShortAddress()' . PHP_EOL;
             var_dump($property->getShortAddress());
 
+            echo PHP_EOL . 'getTitle()' . PHP_EOL;
+            var_dump($property->getTitle());
+
             echo PHP_EOL . 'getEPCImages()' . PHP_EOL;
             var_dump($property->getEPCImages());
 
@@ -97,6 +100,9 @@
 
             echo PHP_EOL . 'getAmount()' . PHP_EOL;
             var_dump($property->getAmount());
+
+            echo PHP_EOL . 'getPriceQualifier()' . PHP_EOL;
+            var_dump($property->getPriceQualifier());
 
             echo PHP_EOL . 'getAvailableFromDate()' . PHP_EOL;
             var_dump($property->getAvailableFromDate());

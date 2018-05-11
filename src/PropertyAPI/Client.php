@@ -33,7 +33,7 @@ class Client extends \PropertyAPI\Base
     {
         $this->response = $this->request(sprintf('id/%d', $id));
 
-        return ($this->response->Data ? $this->parseRow($this->response->Data[0]->_source) : []);
+        return ($this->response->Data ? $this->parseRow($this->response->Data[0]->_source) : new Property());
     }
 
     private function parseRows()

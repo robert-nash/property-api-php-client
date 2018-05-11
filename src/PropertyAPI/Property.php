@@ -12,7 +12,7 @@ class Property extends \PropertyAPI\Base
     protected $mediaURI = 'https://passport.eurolink.co/api/properties/v1/media/';
     private $data;
 
-    public function __construct($data)
+    public function __construct($data = null)
     {
         $this->data = $data;
 
