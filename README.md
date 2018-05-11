@@ -26,6 +26,8 @@ composer require eurolink/property-api-php-client
 
     var_dump($collection->getTotal());
 
+    var_dump($collection->getCount());
+
     // returns array of objects
     var_dump($collection->getRows());
 

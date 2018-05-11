@@ -11,6 +11,7 @@ class Client extends \PropertyAPI\Base
 {
     private $response;
     private $total = 0;
+    private $count = 0;
     private $rows = [];
     private $parsedRows = [];
     private $parsedRow;
@@ -20,6 +21,7 @@ class Client extends \PropertyAPI\Base
         $this->response = $this->request('', $params);
 
         $this->total = $this->response->Total;
+        $this->count = $this->response->Count;
         $this->rows = ($this->response->Data ?: []);
 
         $this->parseRows();
@@ -56,6 +58,11 @@ class Client extends \PropertyAPI\Base
     public function getTotal()
     {
         return $this->total;
+    }
+
+    public function getCount()
+    {
+        return $this->count;
     }
 
     public function getRows()
