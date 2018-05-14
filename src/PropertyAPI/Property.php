@@ -19,6 +19,11 @@ class Property extends \PropertyAPI\Base
         return $this;
     }
 
+    public function __get($name)
+    {
+        return (isset($this->data->{$name}) ? $this->data->{$name} : null);
+    }
+
     private function parseDate($dateString)
     {
         return ($dateString ? new Carbon($dateString) : null);
@@ -47,11 +52,6 @@ class Property extends \PropertyAPI\Base
     public function getWebStatus()
     {
         return $this->Property->Status;
-    }
-
-    public function getStatus()
-    {
-        return $this->getWebStatus();
     }
 
     public function statusOf($status)
@@ -116,18 +116,15 @@ class Property extends \PropertyAPI\Base
         return trim($this->Property->ShortAddress);
     }
 
-    public function getTitle()
-    {
-        return $this->getShortAddress();
-    }
-
     public function getEPCImages()
     {
         $epcs = [];
 
         for ($i = 1; $i <= 2; $i++) {
             if ($this->EPCs->{'Image' . $i}) {
-                $epcs[] = $this->mediaURI . $this->EPCs->{'Image' . $i};
+                $epcs[] = [
+                    'url' => $this->mediaURI . $this->EPCs->{'Image' . $i},
+                ];
             }
         }
 
@@ -140,7 +137,9 @@ class Property extends \PropertyAPI\Base
 
         for ($i = 1; $i <= 2; $i++) {
             if ($this->EPCs->{'Document' . $i}) {
-                $epcs[] = $this->mediaURI . $this->EPCs->{'Document' . $i};
+                $epcs[] = [
+                    'url' => $this->mediaURI . $this->EPCs->{'Document' . $i},
+                ];
             }
         }
 
@@ -240,11 +239,6 @@ class Property extends \PropertyAPI\Base
         return $this->Property->Amount;
     }
 
-    public function getPrice()
-    {
-        return $this->getAmount();
-    }
-
     public function getAvailableFromDate()
     {
         return $this->parseDate($this->Property->AvailableFromDate);
@@ -278,11 +272,6 @@ class Property extends \PropertyAPI\Base
     public function getPropertyType()
     {
         return $this->Property->PropertyType;
-    }
-
-    public function getClassification()
-    {
-        return $this->getPropertyType();
     }
 
     public function isCommerical()
@@ -462,9 +451,25 @@ class Property extends \PropertyAPI\Base
         return $videos;
     }
 
-    public function __get($name)
+    // Legacy methods from old Property API
+    public function getTitle()
     {
-        return (isset($this->data->{$name}) ? $this->data->{$name} : null);
+        return $this->getShortAddress();
+    }
+
+    public function getStatus()
+    {
+        return $this->getWebStatus();
+    }
+
+    public function getPrice()
+    {
+        return $this->getAmount();
+    }
+
+    public function getClassification()
+    {
+        return $this->getPropertyType();
     }
 
 }
