@@ -172,7 +172,9 @@ class Property extends \PropertyAPI\Base
 
         for ($i = 1; $i <= 5; $i++) {
             if ($this->FloorPlans->{'Plan' . $i}) {
-                $floorPlans[] = $this->mediaURI . $this->FloorPlans->{'Plan' . $i};
+                $floorPlans[] = [
+                    'url' => $this->mediaURI . $this->FloorPlans->{'Plan' . $i},
+                ];
             }
         }
 
