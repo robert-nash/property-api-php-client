@@ -474,4 +474,9 @@ class Property extends \PropertyAPI\Base
         return $this->getPropertyType();
     }
 
+    public function getAvailableDate()
+    {
+        return $this->getAvailableFromDate();
+    }
+
 }
