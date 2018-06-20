@@ -36,6 +36,17 @@ composer require eurolink/property-api-php-client
 ?>
 ```
 
+You can pass any of the allowed parameters into the “getProperties()” method. Please refer to the main Property API documentation for the full list.
+
+```php
+<?php
+    $collection = $client->getProperties([
+        'town' => 'London',
+        'size' => 5,
+    ]);
+?>
+```
+
 #### GET Property
 
 ```php
