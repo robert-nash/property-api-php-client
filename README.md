@@ -30,7 +30,7 @@ composer require eurolink/property-api-php-client
     // returns total number of properties matching search criteria
     var_dump($collection->getTotal());
 
-    // returns number of properties returned in current data set
+    // returns number of properties returned in this collection
     var_dump($collection->getCount());
 
     // returns array of objects
