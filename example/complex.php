@@ -4,6 +4,7 @@
 
     use PropertyAPI\Client;
 
+    // these lines are only required for our example
     $dotenv = new Dotenv\Dotenv(realpath(__DIR__ . '/..' ));
     $dotenv->load();
     $dotenv->required('TOKEN')->notEmpty();
@@ -14,7 +15,10 @@
             'accessToken' => getenv('TOKEN'),
         ]);
 
-        $properties = $client->getProperties();
+        // additional GET parameters can be passed in
+        $properties = $client->getProperties([
+            'size' => 1,
+        ]);
 
         echo 'Total: ' . $properties->getTotal() . PHP_EOL;
 

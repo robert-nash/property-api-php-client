@@ -16,16 +16,21 @@ composer require eurolink/property-api-php-client
 <?php
     require 'vendor/autoload.php';
 
-    use PropertyAPI\Properties;
+    use PropertyAPI\Client;
 
-    $client = new Properties({
+    $client = new Client({
         'accessToken' => '~~INSERT_ACCESS_TOKEN~~',
     });
 
-    $collection = $client->getProperties();
+    // additional GET parameters can be passed in (see example below)
+    $collection = $client->getProperties([
+        'size' => 5,
+    ]);
 
+    // returns total number of properties matching search criteria
     var_dump($collection->getTotal());
 
+    // returns number of properties returned in current data set
     var_dump($collection->getCount());
 
     // returns array of objects
@@ -41,8 +46,8 @@ You can pass any of the allowed parameters into the “getProperties()” method
 ```php
 <?php
     $collection = $client->getProperties([
-        'town' => 'London',
         'size' => 5,
+        'town' => 'London',
     ]);
 ?>
 ```
@@ -53,17 +58,20 @@ You can pass any of the allowed parameters into the “getProperties()” method
 <?php
     require 'vendor/autoload.php';
 
-    use PropertyAPI\Properties;
+    use PropertyAPI\Client;
 
-    $client = new Properties({
+    $client = new Client({
         'accessToken' => '~~INSERT_ACCESS_TOKEN~~',
     });
 
+    // gets property by property ID
     $property = $client->getProperty(123456);
 
+    // verify that property have successfully been returned
     var_dump($property->isValid());
 
-    var_dump($property->getCompanyID());
+    // test request by displaying Property ID (UUID)
+    var_dump($property->getPropertyID());
 ?>
 ```
 

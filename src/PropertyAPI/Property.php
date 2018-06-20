@@ -369,6 +369,11 @@ class Property extends \PropertyAPI\Base
         return $this->Office;
     }
 
+    public function getOfficeID()
+    {
+        return $this->Office->ID;
+    }
+
     public function getOfficeName()
     {
         return $this->Office->Name;
