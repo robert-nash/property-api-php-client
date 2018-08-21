@@ -18,9 +18,9 @@ composer require eurolink/property-api-php-client
 
     use PropertyAPI\Client;
 
-    $client = new Client({
+    $client = new Client([
         'accessToken' => '~~INSERT_ACCESS_TOKEN~~',
-    });
+    ]);
 
     // additional GET parameters can be passed in (see example below)
     $collection = $client->getProperties([
@@ -60,9 +60,9 @@ You can pass any of the allowed parameters into the “getProperties()” method
 
     use PropertyAPI\Client;
 
-    $client = new Client({
+    $client = new Client([
         'accessToken' => '~~INSERT_ACCESS_TOKEN~~',
-    });
+    ]);
 
     // gets property by property ID
     $property = $client->getProperty(123456);
