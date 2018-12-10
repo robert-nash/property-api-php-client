@@ -311,6 +311,11 @@ class Property extends \PropertyAPI\Base
     {
         return $this->Property->Bathrooms;
     }
+    
+    public function getReceptions()
+    {
+        return $this->Property->Receptions;
+    }
 
     public function getFurnished()
     {
