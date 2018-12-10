@@ -115,6 +115,12 @@ class Property extends \PropertyAPI\Base
     {
         return trim($this->Property->ShortAddress);
     }
+    
+    public function getStreet()
+    {
+        return $this->Address->Street;
+    }
+
 
     public function getEPCImages()
     {
